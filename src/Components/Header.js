@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-const Header = (props) => {
+const Header = () => {
 
 
     const submitLogout = () => {
@@ -11,7 +11,7 @@ const Header = (props) => {
     return (
         <div>
             <Link to='/dashboard'>Home</Link>
-            <Link to="/" >Add New Funding</Link>
+            <Link to='/addproject' >Add New Project</Link>
             <Link to='/' onClick={() => submitLogout()}> Logout  </Link>
         </div>
     )

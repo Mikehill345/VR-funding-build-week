@@ -5,9 +5,9 @@ import { Switch } from 'react-router';
 import PrivateRoute from './utils/PrivateRoute'
 import SignIn from './Components/SignIn'
 import SignUp from './Components/Signup'
-import AddItemForm from './Components/AddItemForm'
+import AddProjectForm from './Components/AddProjectForm'
 import Dashboard from './Components/Dashboard'
-import ItemDetail from './Components/ItemDetail'
+import ProjectDetail from './Components/ProjectDetail'
 
 function App() {
   return (
@@ -15,14 +15,15 @@ function App() {
       <div>
         <Link to='/'>Sign In</Link>
         <Link to='/signup'>Sign Up</Link>
+        <Link to='dashboard'>Dashboard</Link>
       </div>
     <div className="App">
       <Switch>
     <Route exact path='/' component={SignIn} />
       <Route path='/signup' component={SignUp}/>
-      <Route path='/item/additem' component={AddItemForm}/>
+      <Route path='/addproject' component={AddProjectForm}/>
       <Route path='/dashboard' component={Dashboard} />
-      <Route path='/item/:id' component={ItemDetail} />
+      <Route path='/project/:id' component={ProjectDetail} />
       </Switch>
     </div>
     </Router>

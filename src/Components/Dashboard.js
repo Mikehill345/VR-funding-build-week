@@ -1,14 +1,34 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Header from './Header'
-import ItemList from './ItemList'
+import ProjectList from './ProjectList'
+import { connect } from 'react-redux'
+import { fetchProjects } from '../actions/index'
 
-const Dashboard = () => {
+const Dashboard = (props) => {
+    const { fetchProjects } = props
+
+    useEffect(() => {
+        fetchProjects()
+    }, [fetchProjects])
+
     return (
         <div>
             <Header />
-            <ItemList />
+            {props.isLoading ? (
+                'loading...'
+            ) : (
+                    props.projects.map((project, index) => {
+                        return <ProjectList project={project} key={index} />;
+                    })
+                )}
         </div>
     )
 }
+const mapStateToProps = (state) => {
+    return {
+        projects: state.projects,
+        isLoading: state.isLoading,
+    };
+};
 
-export default Dashboard
+export default connect(mapStateToProps, { fetchProjects })(Dashboard)

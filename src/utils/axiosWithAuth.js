@@ -7,7 +7,7 @@ import axios from "axios";
     headers: {
       Authorization: token
     },
-    baseURL: "http://localhost:5000"
+    baseURL: "https://virtualrealityfunding.herokuapp.com"
   });
 };
 

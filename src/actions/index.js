@@ -8,7 +8,7 @@ export const SIGNIN_FAILURE = 'SIGNIN_FAILURE'
 
 export const signin = (creds) => (dispatch) =>{
     dispatch({type:SIGNIN_START})
-    return axiosWithAuth().post('somehttps', creds)
+    return axiosWithAuth().post('/auth/login', creds)
     .then((res) => {
         localStorage.setItem('token', res.data.token)
         dispatch({type: SIGNIN_SUCCESS, payload: res.data})
@@ -26,7 +26,7 @@ export const SIGNUP_FAILURE = 'SIGNUP_FAILURE'
 export const signup = (user) => (dispatch) => {
     dispatch({type: SIGNUP_START})
     return axios
-    .post('somehttps', user)
+    .post('/auth/register', user)
     .then((res) => {
         dispatch({type: SIGNUP_SUCCESS, payload: res.data})
     })
@@ -35,82 +35,82 @@ export const signup = (user) => (dispatch) => {
     })
 }
 
-export const ADD_ITEM_START = 'ADD_ITEM_START'
-export const ADD_ITEM_SUCCESS = 'ADD_ITEM_SUCCESS'
-export const ADD_ITEM_FAILURE = 'ADD_ITEM_FAILURE'
+export const ADD_PROJECT_START = 'ADD_PROJECT_START'
+export const ADD_PROJECT_SUCCESS = 'ADD_PROJECT_SUCCESS'
+export const ADD_PROJECT_FAILURE = 'ADD_PROJECT_FAILURE'
 
-export const addItem = (item) => (dispatch) => {
-    dispatch({type: ADD_ITEM_START})
+export const addProject = (project) => (dispatch) => {
+    dispatch({type: ADD_PROJECT_START})
     return axiosWithAuth()
-    .post('somehttps', item)
+    .post('projects', project)
     .then((res) => {
-        dispatch({type: ADD_ITEM_START, payload: res.data})
+        dispatch({type: ADD_PROJECT_START, payload: res.data})
     })
     .catch((err) => {
-        dispatch({type: ADD_ITEM_FAILURE, payload: err.message})
+        dispatch({type: ADD_PROJECT_FAILURE, payload: err.message})
     })
 }
 
-export const FETCH_ITEM_START = 'FETCH_ITEM_START'
-export const FETCH_ITEM_SUCCESS = 'FETCH_ITEM_SUCCESS'
-export const FETCH_ITEM_FAILURE = 'FETCH_ITEM_FAILURE'
+export const FETCH_PROJECT_START = 'FETCH_PROJECT_START'
+export const FETCH_PROJECT_SUCCESS = 'FETCH_PROJECT_SUCCESS'
+export const FETCH_PROJECT_FAILURE = 'FETCH_PROJECT_FAILURE'
 
-export const fetchItems = () => (dispatch) => {
-    dispatch({type: FETCH_ITEM_START})
-    return axiosWithAuth()
-    .get('somehttps')
+export const fetchProjects = () => (dispatch) => {
+    dispatch({type: FETCH_PROJECT_START})
+    return axios
+    .get('/projects')
     .then((res) => {
-        dispatch({type: FETCH_ITEM_SUCCESS, payload: res.data})
+        dispatch({type: FETCH_PROJECT_SUCCESS, payload: res.data})
     })
     .catch((err) => {
-        dispatch({type: FETCH_ITEM_FAILURE, payload: err.message})
+        dispatch({type: FETCH_PROJECT_FAILURE, payload: err.message})
     })
 }
 
-export const FETCH_ITEM_DETAIL_START = 'FETCH_ITEM_DETAIL_START'
-export const FETCH_ITEM_DETAIL_SUCCESS = 'FETCH_ITEM_DETAIL_SUCCESS'
-export const FETCH_ITEM_DETAIL_FAILURE = 'FETCH_ITEM_DETAIL_FAILURE'
+export const FETCH_PROJECT_DETAIL_START = 'FETCH_PROJECT_DETAIL_START'
+export const FETCH_PROJECT_DETAIL_SUCCESS = 'FETCH_PROJECT_DETAIL_SUCCESS'
+export const FETCH_PROJECT_DETAIL_FAILURE = 'FETCH_PROJECT_DETAIL_FAILURE'
 
-export const fetchItemDetail = (id) => (dispatch) => {
-    dispatch({type: FETCH_ITEM_DETAIL_START})
+export const fetchProjectDetail = (id) => (dispatch) => {
+    dispatch({type: FETCH_PROJECT_DETAIL_START})
     return axiosWithAuth()
-    .get(`somehttps/${id}`)
+    .get(`/projects/${id}`)
     .then((res) => {
-        dispatch({type: FETCH_ITEM_DETAIL_SUCCESS, payload: res.data})
+        dispatch({type: FETCH_PROJECT_DETAIL_SUCCESS, payload: res.data})
     })
     .catch((err) => {
-        dispatch({type: FETCH_ITEM_DETAIL_FAILURE, payload: err.message})
+        dispatch({type: FETCH_PROJECT_DETAIL_FAILURE, payload: err.message})
     })
 }
 
-export const DELETE_ITEM_START = 'DELETE_ITEM_START'
-export const DELETE_ITEM_SUCCESS = 'DELETE_ITEM_SUCCESS'
-export const DELETE_ITEM_FAILURE = 'DELETE_ITEM_FAILURE'
+export const DELETE_PROJECT_START = 'DELETE_PROJECT_START'
+export const DELETE_PROJECT_SUCCESS = 'DELETE_PROJECT_SUCCESS'
+export const DELETE_PROJECT_FAILURE = 'DELETE_PROJECT_FAILURE'
 
-export const deleteItem = (item) => (dispatch) => {
-    dispatch({type: DELETE_ITEM_START})
+export const deleteProject = (project) => (dispatch) => {
+    dispatch({type: DELETE_PROJECT_START})
     return axiosWithAuth()
-    .delete(`somehttps/${item.id}`, item)
+    .delete(`/projects/${project.id}`, project)
     .then((res) => {
-        dispatch({type: DELETE_ITEM_SUCCESS, payload: res.data})
+        dispatch({type: DELETE_PROJECT_SUCCESS, payload: res.data})
     })
     .catch((err) => {
-        dispatch({type: DELETE_ITEM_FAILURE, payload: err.message})
+        dispatch({type: DELETE_PROJECT_FAILURE, payload: err.message})
     })
 }
 
-export const EDIT_ITEM_START = 'EDIT_ITEM_START'
-export const EDIT_ITEM_SUCCESS = 'EDIT_ITEM_SUCCESS'
-export const EDIT_ITEM_FAILURE = 'EDIT_ITEM_FAILURE'
+export const EDIT_PROJECT_START = 'EDIT_PROJECT_START'
+export const EDIT_PROJECT_SUCCESS = 'EDIT_PROJECT_SUCCESS'
+export const EDIT_PROJECT_FAILURE = 'EDIT_PROJECT_FAILURE'
 
-export const editItem = (item) => (dispatch) => {
-    dispatch({type: EDIT_ITEM_START})
+export const editProject = (project) => (dispatch) => {
+    dispatch({type: EDIT_PROJECT_START})
     return axiosWithAuth()
-    .delete(`somehttps/${item.id}`, item)
+    .put(`somehttps/${project.id}`, project)
     .then((res) => {
-        dispatch({type: EDIT_ITEM_SUCCESS, payload: res.data})
+        dispatch({type: EDIT_PROJECT_SUCCESS, payload: res.data})
     })
     .catch((err) => {
-        dispatch({type: EDIT_ITEM_FAILURE, payload: err.message})
+        dispatch({type: EDIT_PROJECT_FAILURE, payload: err.message})
     })
 }

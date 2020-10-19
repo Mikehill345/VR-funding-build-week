@@ -5,29 +5,30 @@ import {
     SIGNUP_START,
     SIGNUP_SUCCESS,
     SIGNUP_FAILURE,
-    ADD_ITEM_START,
-    ADD_ITEM_SUCCESS,
-    ADD_ITEM_FAILURE,
-    FETCH_ITEM_START,
-    FETCH_ITEM_SUCCESS,
-    FETCH_ITEM_FAILURE,
-    FETCH_ITEM_DETAIL_START,
-    FETCH_ITEM_DETAIL_SUCCESS,
-    FETCH_ITEM_DETAIL_FAILURE,
-    DELETE_ITEM_START,
-    DELETE_ITEM_SUCCESS,
-    DELETE_ITEM_FAILURE,
-    EDIT_ITEM_START,
-    EDIT_ITEM_SUCCESS,
-    EDIT_ITEM_FAILURE
+    ADD_PROJECT_START,
+    ADD_PROJECT_SUCCESS,
+    ADD_PROJECT_FAILURE,
+    FETCH_PROJECT_START,
+    FETCH_PROJECT_SUCCESS,
+    FETCH_PROJECT_FAILURE,
+    FETCH_PROJECT_DETAIL_START,
+    FETCH_PROJECT_DETAIL_SUCCESS,
+    FETCH_PROJECT_DETAIL_FAILURE,
+    DELETE_PROJECT_START,
+    DELETE_PROJECT_SUCCESS,
+    DELETE_PROJECT_FAILURE,
+    EDIT_PROJECT_START,
+    EDIT_PROJECT_SUCCESS,
+    EDIT_PROJECT_FAILURE
 } from '../actions/index'
 
 
 
 const initialState = {
-    We: '',
-    dont: '',
-    know: '',
+    projects:[],
+    error:'',
+    isLoading:true,
+
 }
 
 const reducer = (state = initialState, action) => {
@@ -62,77 +63,81 @@ const reducer = (state = initialState, action) => {
                 ...state,
 
             }
-        case ADD_ITEM_START:
+        case ADD_PROJECT_START:
+            return {
+                ...state,
+                isLoading:true
+            }
+        case ADD_PROJECT_SUCCESS:
+            return {
+                ...state,
+                isLoading:false,
+                projects: action.payload
+            }
+        case ADD_PROJECT_FAILURE:
+            return {
+                ...state,
+                isLoading:false,
+                error: 'Something went wrong'
+            }
+        case FETCH_PROJECT_START:
+            return {
+                ...state,
+                isLoading:true
+            }
+        case FETCH_PROJECT_SUCCESS:
+            return {
+                ...state,
+                isLoading:false,
+                projects: action.payload
+            }
+        case FETCH_PROJECT_FAILURE:
+            return {
+                ...state,
+                isLoading:false,
+                error:'something went wrong whoops'
+            }
+        case FETCH_PROJECT_DETAIL_START:
             return {
                 ...state,
 
             }
-        case ADD_ITEM_SUCCESS:
+        case FETCH_PROJECT_DETAIL_SUCCESS:
             return {
                 ...state,
 
             }
-        case ADD_ITEM_FAILURE:
+        case FETCH_PROJECT_DETAIL_FAILURE:
             return {
                 ...state,
 
             }
-        case FETCH_ITEM_START:
+        case DELETE_PROJECT_START:
             return {
                 ...state,
 
             }
-        case FETCH_ITEM_SUCCESS:
+        case DELETE_PROJECT_SUCCESS:
             return {
                 ...state,
 
             }
-        case FETCH_ITEM_FAILURE:
+        case DELETE_PROJECT_FAILURE:
             return {
                 ...state,
 
             }
-        case FETCH_ITEM_DETAIL_START:
+        case EDIT_PROJECT_START:
             return {
                 ...state,
 
             }
-        case FETCH_ITEM_DETAIL_SUCCESS:
+        case EDIT_PROJECT_SUCCESS:
             return {
                 ...state,
 
             }
-        case FETCH_ITEM_DETAIL_FAILURE:
-            return {
-                ...state,
-
-            }
-        case DELETE_ITEM_START:
-            return {
-                ...state,
-
-            }
-        case DELETE_ITEM_SUCCESS:
-            return {
-                ...state,
-
-            }
-        case DELETE_ITEM_FAILURE:
-            return {
-                ...state,
-
-            }
-        case EDIT_ITEM_START:
-            return {
-                ...state,
-
-            }
-        case EDIT_ITEM_SUCCESS:
-            return {
-                ...state,
-
-            }
-        case EDIT_ITEM_FAILURE:
+        case EDIT_PROJECT_FAILURE:
             return {
                 ...state,
 
