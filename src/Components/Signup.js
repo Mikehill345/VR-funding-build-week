@@ -6,7 +6,7 @@ import { signup } from '../actions/index';
 import { connect } from 'react-redux'
 import SignUpStyles from './SignUpStyles'
  
-const Signup = () => {
+const Signup = ({ signup }) => {
     const [ user, setUser ] = useState({username: '', email: '', password: ''});
     const [ error, setError ] = useState({username: '', email: '', password: ''});
     const [ disabled, setDisabled ] = useState(true);
@@ -14,14 +14,14 @@ const Signup = () => {
     const history = useHistory()
 
     const submitHandler = event => {
-        debugger;
         event.preventDefault();
         const newUser = {
             username: user.username,
             password: user.password,
             email: user.email,
         }
-        signup(user)
+        debugger
+        signup(newUser)
         history.push('/')
         // axios.post('https://virtualrealityfunding.herokuapp.com/auth/login', newUser)
         // .then(() => {
@@ -31,7 +31,7 @@ const Signup = () => {
         //     console.log(err)
         // })
     }
-
+    console.log(signup)
     const setUserError = (name, value) => {
         yup
         .reach(formSchema, name)
@@ -106,7 +106,7 @@ const Signup = () => {
 }
 const mapStateToProps = (state) => {
     return {
-
+        
     }
 }
 

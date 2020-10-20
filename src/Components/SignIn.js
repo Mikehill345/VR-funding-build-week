@@ -22,7 +22,6 @@ const SignIn = (props) => {
         }
         props.signin(newUser)
         history.push('/dashboard')
-
         // axios
         // .post('https://virtualrealityfunding.herokuapp.com/auth/login', newUser)
         // .then((res) => {

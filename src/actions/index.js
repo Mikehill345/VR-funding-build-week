@@ -24,12 +24,12 @@ export const SIGNUP_START = 'SIGNUP_START'
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS'
 export const SIGNUP_FAILURE = 'SIGNUP_FAILURE'
 
-export const signup = (user, item) => (dispatch) => {
+export const signup = (user) => (dispatch) => {
     dispatch({type: SIGNUP_START})
     return axios
-    .post('/auth/register', user)
+    .post('https://virtualrealityfunding.herokuapp.com/auth/register', user)
     .then((res) => {
-        item(res.data)
+        console.log('inside the action',res)
         dispatch({type: SIGNUP_SUCCESS, payload: res.data})
     })
     .catch((err) => {

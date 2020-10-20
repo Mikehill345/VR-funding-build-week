@@ -52,7 +52,6 @@ const reducer = (state = initialState, action) => {
         case SIGNUP_START:
             return {
                 ...state,
-
             }
         case SIGNUP_SUCCESS:
             return {
