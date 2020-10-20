@@ -4,6 +4,7 @@ import formSchema from './formSchema';
 import { useHistory } from 'react-router-dom';
 import { signup } from '../actions/index';
 import { connect } from 'react-redux'
+import SignUpStyles from './SignUpStyles'
  
 const Signup = () => {
     const [ user, setUser ] = useState({username: '', email: '', password: ''});
@@ -58,32 +59,48 @@ const Signup = () => {
 
     return (
         <>
+        <SignUpStyles>
+        <div className='Form'>
         <form onSubmit={submitHandler} autoComplete='off'>
+
             <h2>Sign Up</h2>
+
             <div className='name-container'>
-                <label>
-                    Name: 
-                    <input type='text' name='username' onChange={change} value={user.username}/>
-                </label>
+                <div>
+                    <label htmlFor='username'>
+                        Name: 
+                    </label>
+                </div>
+                <input type='text' name='username' onChange={change} value={user.username}/>
             </div>
+
             <div className='email-container'>
-                <label>
-                    Email:
+                <div>
+                    <label>
+                        Email:
+                    </label>
+                </div>
                     <input type='text' name='email' onChange={change} value={user.email} />
-                </label>
             </div>
+
             <div className='password-container'>
+                <div>
                 <label>
                     Password:
-                    <input type='text' name='password' onChange={change} value={user.password} />
                 </label>
+                </div>
+                    <input type='text' name='password' onChange={change} value={user.password} />
             </div>
+
             <div>
                 {error.username}
                 {error.password}
             </div>
-            <button>Submit</button> 
+
+            <button disabled={disabled} >Submit</button> 
         </form>
+        </div>
+        </SignUpStyles>
         </>
     )
 }
