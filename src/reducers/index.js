@@ -118,32 +118,33 @@ const reducer = (state = initialState, action) => {
         case DELETE_PROJECT_START:
             return {
                 ...state,
-
+                isLoading:true
             }
         case DELETE_PROJECT_SUCCESS:
             return {
                 ...state,
-
+                isLoading:false,
+                projects:[...state.projects, action.payload]
             }
         case DELETE_PROJECT_FAILURE:
             return {
                 ...state,
-
+                isLoading:false
             }
         case EDIT_PROJECT_START:
             return {
-                ...state,
-
+                ...state,  
+                isLoading:true
             }
         case EDIT_PROJECT_SUCCESS:
             return {
                 ...state,
-
+                project:[...state.project, action.payload]
             }
         case EDIT_PROJECT_FAILURE:
             return {
                 ...state,
-
+                error:'some Error'
             }
         default:
             return state

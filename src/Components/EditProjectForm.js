@@ -4,28 +4,27 @@ import { editProject, fetchProjectDetail } from '../actions/index'
 import { useParams, useHistory } from 'react-router-dom'
 
 const EditProjectForm = ({ project, fetchProjectDetail, editProject, isLoading }) => {
-    console.log(project.project_name)
+    const history = useHistory()
     const initialFormValues ={
         project_name: project.project_name,
         project_description: project.project_description,
         project_goal: project.project_goal,
+        id:project.id
     }
     const { id } = useParams()
     const [formValues, setFormValues] = useState(initialFormValues)
-
     const onSubmit = (e) => {
         e.preventDefault()
-        editProject(project)
+        editProject(formValues)
+        history.push(`/project/${id}`)
     }
-    console.log()
-
     const handleChange = (e) => {
-        setFormValues({ ...project, [e.target.name]: e.target.value })
+        setFormValues({ ...formValues, [e.target.name]: e.target.value })
     }
 
     useEffect(() => {
         fetchProjectDetail(id)
-    }, [])
+    }, [fetchProjectDetail, id])
 
     return (
         <div>
@@ -36,21 +35,21 @@ const EditProjectForm = ({ project, fetchProjectDetail, editProject, isLoading }
                 <input
                     type='text'
                     name='project_name'
-                    value={project.project_name}
+                    value={formValues.project_name}
                     onChange={handleChange}
                     placeholder='Project Name'
                 />
                 <input
                     type='text'
                     name='project_description'
-                    value={project.project_description}
+                    value={formValues.project_description}
                     onChange={handleChange}
                     placeholder='Description of your project'
                 />
                 <input
                     type='integer'
                     name='project_goal'
-                    value={project.project_goal}
+                    value={formValues.project_goal}
                     onChange={handleChange}
                     placeholder='Whats your goal?'
                 />
@@ -61,6 +60,7 @@ const EditProjectForm = ({ project, fetchProjectDetail, editProject, isLoading }
     )
 }
 const mapStateToProps = (state) => {
+    console.log(state.project)
     return {
         project:state.project,
         isLoading:state.isLoading

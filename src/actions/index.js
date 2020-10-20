@@ -89,10 +89,10 @@ export const DELETE_PROJECT_START = 'DELETE_PROJECT_START'
 export const DELETE_PROJECT_SUCCESS = 'DELETE_PROJECT_SUCCESS'
 export const DELETE_PROJECT_FAILURE = 'DELETE_PROJECT_FAILURE'
 
-export const deleteProject = (project) => (dispatch) => {
+export const deleteProject = (id) => (dispatch) => {
     dispatch({type: DELETE_PROJECT_START})
     return axiosWithAuth()
-    .delete(`/projects/${project.id}`, project)
+    .delete(`/projects/${id}`)
     .then((res) => {
         dispatch({type: DELETE_PROJECT_SUCCESS, payload: res.data})
     })
@@ -108,7 +108,7 @@ export const EDIT_PROJECT_FAILURE = 'EDIT_PROJECT_FAILURE'
 export const editProject = (project) => (dispatch) => {
     dispatch({type: EDIT_PROJECT_START})
     return axiosWithAuth()
-    .put(`somehttps/${project.id}`, project)
+    .put(`/projects/${project.id}`, project)
     .then((res) => {
         dispatch({type: EDIT_PROJECT_SUCCESS, payload: res.data})
     })

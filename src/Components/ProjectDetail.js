@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { fetchProjectDetail, deleteProject } from '../actions/index'
 import { connect } from 'react-redux'
@@ -10,13 +10,12 @@ const ProjectDetail = ({ fetchProjectDetail, project, deleteProject }) => {
 
     useEffect(() => {
         fetchProjectDetail(id)
-    }, [])
+    }, [fetchProjectDetail, id])
 
     const projectDelete = (e) => {
-        deleteProject(id)
-        history.pushState('/dashboard')
+        deleteProject(project.id)
+        history.push('/dashboard')
     }
-
     return (
         <div>
             <h2>{project.project_name}</h2>
@@ -29,7 +28,8 @@ const ProjectDetail = ({ fetchProjectDetail, project, deleteProject }) => {
 }
 const mapStateToProps = (state) => {
     return {
-        project: state.project
+        project: state.project,
+        isLoading:state.isLoading
     }
 }
 export default connect(mapStateToProps, { fetchProjectDetail, deleteProject })(ProjectDetail)

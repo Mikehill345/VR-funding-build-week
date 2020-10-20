@@ -19,16 +19,16 @@ function App() {
         <Link to='/signup'>Sign Up</Link>
         <Link to='dashboard'>Dashboard</Link>
       </div>
-    <div className="App">
-      <Switch>
-    <Route exact path='/' component={SignIn} />
-      <Route path='/signup' component={SignUp}/>
-      <PrivateRoute path='/addproject' component={AddProjectForm}/>
-      <PrivateRoute path='/dashboard' component={Dashboard} />
-      <PrivateRoute path='/project/:id' component={ProjectDetail} />
-      <PrivateRoute path='/projectEdit/:id' component={EditProjectForm} />
-      </Switch>
-    </div>
+      <div className="App">
+        <Switch>
+          <Route exact path='/' component={SignIn} />
+          <Route path='/signup' component={SignUp} />
+          <PrivateRoute path='/addproject' component={AddProjectForm} />
+          <PrivateRoute path='/dashboard' component={Dashboard} />
+          <PrivateRoute path='/project/:id' component={ProjectDetail} />
+          <PrivateRoute path='/projectEdit/:id' component={EditProjectForm} />
+        </Switch>
+      </div>
     </Router>
   );
 }
