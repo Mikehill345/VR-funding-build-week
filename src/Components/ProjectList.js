@@ -1,13 +1,16 @@
 import React from 'react'
+import { useHistory } from 'react-router-dom'
 
-const ProjectList = (props) => {
+const ProjectList = ({ project }) => {
+    const history = useHistory()
 
 
     return (
         <div className='project-list'>
-            <h1>{props.project_name}</h1>
-            <p>{props.project_description}</p>
-            <p>{props.project_goal}</p>
+            <h1>{project.project_name}</h1>
+            <p>{project.project_description}</p>
+            <p>{project.project_goal}</p>
+            <button onClick={() => {history.push(`/project/${project.id}`)}}>See More</button>
         </div>
     )
 }

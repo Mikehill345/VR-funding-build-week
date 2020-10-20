@@ -8,7 +8,8 @@ export const SIGNIN_FAILURE = 'SIGNIN_FAILURE'
 
 export const signin = (creds) => (dispatch) =>{
     dispatch({type:SIGNIN_START})
-    return axiosWithAuth().post('/auth/login', creds)
+    return axiosWithAuth()
+    .post('/auth/login', creds)
     .then((res) => {
         localStorage.setItem('token', res.data.token)
         dispatch({type: SIGNIN_SUCCESS, payload: res.data})
@@ -23,11 +24,12 @@ export const SIGNUP_START = 'SIGNUP_START'
 export const SIGNUP_SUCCESS = 'SIGNUP_SUCCESS'
 export const SIGNUP_FAILURE = 'SIGNUP_FAILURE'
 
-export const signup = (user) => (dispatch) => {
+export const signup = (user, item) => (dispatch) => {
     dispatch({type: SIGNUP_START})
     return axios
     .post('/auth/register', user)
     .then((res) => {
+        item(res.data)
         dispatch({type: SIGNUP_SUCCESS, payload: res.data})
     })
     .catch((err) => {
@@ -42,9 +44,9 @@ export const ADD_PROJECT_FAILURE = 'ADD_PROJECT_FAILURE'
 export const addProject = (project) => (dispatch) => {
     dispatch({type: ADD_PROJECT_START})
     return axiosWithAuth()
-    .post('projects', project)
+    .post('/projects', project)
     .then((res) => {
-        dispatch({type: ADD_PROJECT_START, payload: res.data})
+        dispatch({type: ADD_PROJECT_SUCCESS, payload: res.data})
     })
     .catch((err) => {
         dispatch({type: ADD_PROJECT_FAILURE, payload: err.message})
@@ -57,7 +59,7 @@ export const FETCH_PROJECT_FAILURE = 'FETCH_PROJECT_FAILURE'
 
 export const fetchProjects = () => (dispatch) => {
     dispatch({type: FETCH_PROJECT_START})
-    return axios
+    return axiosWithAuth()
     .get('/projects')
     .then((res) => {
         dispatch({type: FETCH_PROJECT_SUCCESS, payload: res.data})

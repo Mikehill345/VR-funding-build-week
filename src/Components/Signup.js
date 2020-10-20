@@ -1,27 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import axiosWithAuth from '../utils/axiosWithAuth';
-import axios from 'axios';
 import * as yup from 'yup';
 import formSchema from './formSchema';
 import { useHistory } from 'react-router-dom';
-import { signin } from '../actions/index';
-
+import { signup } from '../actions/index';
+import { connect } from 'react-redux'
+ 
 const Signup = () => {
-    const [ user, setUser ] = useState({name: '', email: '', password: ''});
-    const [ error, setError ] = useState({name: '', email: '', password: ''});
+    const [ user, setUser ] = useState({username: '', email: '', password: ''});
+    const [ error, setError ] = useState({username: '', email: '', password: ''});
     const [ disabled, setDisabled ] = useState(true);
 
-    // const history = useHistory()
+    const history = useHistory()
 
     const submitHandler = event => {
+        debugger;
         event.preventDefault();
         const newUser = {
-            name: user.name.trim(),
-            password: user.password.trim(),
+            username: user.username,
+            password: user.password,
+            email: user.email,
         }
-
-        signin(newUser)
-
+        signup(user)
+        history.push('/')
         // axios.post('https://virtualrealityfunding.herokuapp.com/auth/login', newUser)
         // .then(() => {
         //     history.push('/dashboard')
@@ -38,7 +38,6 @@ const Signup = () => {
 
         .then(() => setError({...error, [name]: '' }))
         .catch((err) => {
-            console.log(err);
             setError({...error, [name]: err.errors[0] })})
 
 
@@ -64,7 +63,7 @@ const Signup = () => {
             <div className='name-container'>
                 <label>
                     Name: 
-                    <input type='text' name='name' onChange={change} value={user.name}/>
+                    <input type='text' name='username' onChange={change} value={user.username}/>
                 </label>
             </div>
             <div className='email-container'>
@@ -80,13 +79,18 @@ const Signup = () => {
                 </label>
             </div>
             <div>
-                {error.name}
+                {error.username}
                 {error.password}
             </div>
-            <input disabled={disabled} type='submit' value='SIGN IN' />
+            <button>Submit</button> 
         </form>
         </>
     )
 }
+const mapStateToProps = (state) => {
+    return {
 
-export default Signup
+    }
+}
+
+export default connect(mapStateToProps, { signup })(Signup)

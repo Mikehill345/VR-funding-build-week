@@ -3,11 +3,11 @@ import * as yup from 'yup';
 
 
 export default yup.object().shape({
-    name:
+    username:
     yup
     .string()
     .required('Name is a required field')
-    .min(5, 'Name must be atleast 2 characters'),
+    .min(1, 'Name must be atleast 2 characters'),
 
     email: 
     yup

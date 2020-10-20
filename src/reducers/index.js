@@ -28,7 +28,7 @@ const initialState = {
     projects:[],
     error:'',
     isLoading:true,
-
+    project:{},
 }
 
 const reducer = (state = initialState, action) => {
@@ -36,17 +36,18 @@ const reducer = (state = initialState, action) => {
         case SIGNIN_START:
             return {
                 ...state,
-
+                isLoading:true
             }
         case SIGNIN_SUCCESS:
             return {
                 ...state,
-
+                isLoading:false,
             }
         case SIGNIN_FAILURE:
             return {
                 ...state,
-
+                isLoading:false,
+                error: action.payload.error
             }
         case SIGNUP_START:
             return {
@@ -72,7 +73,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading:false,
-                projects: action.payload
+                projects: [...state.projects, action.payload]
             }
         case ADD_PROJECT_FAILURE:
             return {
@@ -100,17 +101,19 @@ const reducer = (state = initialState, action) => {
         case FETCH_PROJECT_DETAIL_START:
             return {
                 ...state,
-
+                isLoading:true
             }
         case FETCH_PROJECT_DETAIL_SUCCESS:
             return {
                 ...state,
-
+                isLoading:false,
+                project: action.payload
             }
         case FETCH_PROJECT_DETAIL_FAILURE:
             return {
                 ...state,
-
+                isLoading:false,
+                error:'it borked'
             }
         case DELETE_PROJECT_START:
             return {

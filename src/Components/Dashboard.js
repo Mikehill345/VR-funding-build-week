@@ -4,20 +4,19 @@ import ProjectList from './ProjectList'
 import { connect } from 'react-redux'
 import { fetchProjects } from '../actions/index'
 
-const Dashboard = (props) => {
-    const { fetchProjects } = props
+const Dashboard = ({ fetchProjects, projects, isLoading }) => {
 
     useEffect(() => {
         fetchProjects()
-    }, [fetchProjects])
+    },[fetchProjects])
 
     return (
         <div>
             <Header />
-            {props.isLoading ? (
+            {isLoading ? (
                 'loading...'
             ) : (
-                    props.projects.map((project, index) => {
+                    projects.map((project, index) => {
                         return <ProjectList project={project} key={index} />;
                     })
                 )}
