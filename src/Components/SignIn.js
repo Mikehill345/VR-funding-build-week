@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { signin } from '../actions/index';
 import { connect } from 'react-redux'
 import SignInStyle from './SignInStyles'
+import MainHeader from './MainHeader';
 
 
 const SignIn = (props) => {
@@ -62,6 +63,7 @@ const SignIn = (props) => {
 
     return (
         <>
+        <MainHeader />
         <SignInStyle>
             <div className='Form'>
             <form onSubmit={submitHandler} autoComplete='off'>

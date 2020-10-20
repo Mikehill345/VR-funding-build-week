@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { signup } from '../actions/index';
 import { connect } from 'react-redux'
 import SignUpStyles from './SignUpStyles'
+import MainHeader from './MainHeader';
  
 const Signup = ({ signup }) => {
     const [ user, setUser ] = useState({username: '', email: '', password: ''});
@@ -59,6 +60,7 @@ const Signup = ({ signup }) => {
 
     return (
         <>
+            <MainHeader />
         <SignUpStyles>
         <div className='Form'>
         <form onSubmit={submitHandler} autoComplete='off'>
