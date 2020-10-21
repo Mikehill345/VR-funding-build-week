@@ -2,6 +2,14 @@ import React, { useEffect } from 'react'
 import { useParams, useHistory } from 'react-router-dom'
 import { fetchProjectDetail, deleteProject } from '../actions/index'
 import { connect } from 'react-redux'
+import Styled from 'styled-components';
+
+
+const testStyle = Styled.div`
+h2{
+    color: white;
+}
+`;
 
 
 const ProjectDetail = ({ fetchProjectDetail, project, deleteProject }) => {

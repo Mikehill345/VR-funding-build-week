@@ -1,7 +1,8 @@
-import Styled from 'styled-components'
+import Styled from 'styled-components';
 
-const MainHeaderStyles = Styled.div`
+const HeaderStyles = Styled.div`
 margin: 0;
+margin-bottom: 4%;
 padding: 0;
 display: flex;
 justify-content: space-between;
@@ -35,4 +36,4 @@ justify-content: space-between;
 }
 `;
 
-export default MainHeaderStyles;
+export default HeaderStyles;
