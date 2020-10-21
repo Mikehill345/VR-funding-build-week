@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { addProject } from '../actions/index'
 import { useHistory } from 'react-router-dom'
+import Header from './Header'
+import { StyledForm, StyledInputOne, StyledButton} from './AddProjectFormStyles'
 
 const AddProjectForm = ({ addProject }) => {
 
@@ -23,31 +25,34 @@ const AddProjectForm = ({ addProject }) => {
     }
     return (
         <div>
-            <form onSubmit={onSubmit}>
-                <input
+            <Header />
+            <StyledForm onSubmit={onSubmit}>
+                <StyledInputOne
                     type='text'
                     name='project_name'
                     value={formValues.project_name}
                     onChange={handleChange}
-                    placeholder=''
+                    placeholder='Project Name'
                 />
-                <input
-                    type='text'
-                    name='project_description'
-                    value={formValues.project_description}
-                    onChange={handleChange}
-                    placeholder='Description of your project'
-                />
-                <input
+                <StyledInputOne
                     type='integer'
                     name='project_goal'
                     value={formValues.project_goal}
                     onChange={handleChange}
                     placeholder='Whats your goal?'
                 />
-                <button>Submit</button>
-            </form>
-
+                <textArea
+                    type='text'
+                    name='project_description'
+                    value={formValues.project_description}
+                    onChange={handleChange}
+                    placeholder='Description of your project'
+                    rows='5'
+                    className='text-area'
+                    >
+                    </textArea>
+                <StyledButton>Submit</StyledButton>
+            </StyledForm>
         </div>
     )
 }
