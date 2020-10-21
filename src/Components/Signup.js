@@ -21,7 +21,6 @@ const Signup = ({ signup }) => {
             password: user.password,
             email: user.email,
         }
-        debugger
         signup(newUser)
         history.push('/')
         // axios.post('https://virtualrealityfunding.herokuapp.com/auth/login', newUser)

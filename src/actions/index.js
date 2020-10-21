@@ -1,18 +1,20 @@
 import axiosWithAuth from '../utils/axiosWithAuth'
 import axios from 'axios'
 
+
 export const SIGNIN_START = 'SIGNIN_START'
 export const SIGNIN_SUCCESS = 'SIGNIN_SUCCESS'
 export const SIGNIN_FAILURE = 'SIGNIN_FAILURE'
 
 
-export const signin = (creds) => (dispatch) =>{
+export const signin = (action) => (dispatch) =>{
     dispatch({type:SIGNIN_START})
     return axiosWithAuth()
-    .post('/auth/login', creds)
+    .post('/auth/login', action.newUser)
     .then((res) => {
         localStorage.setItem('token', res.data.token)
         dispatch({type: SIGNIN_SUCCESS, payload: res.data})
+        action.history.push('/dashboard')
     })
     .catch((err) => {
         console.log(err)

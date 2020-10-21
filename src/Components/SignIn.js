@@ -21,8 +21,8 @@ const SignIn = (props) => {
             password: user.password,
             email: user.email,
         }
-        props.signin(newUser)
-        history.push('/dashboard')
+        props.signin({newUser, history})
+        // history.push('/dashboard')
         // axios
         // .post('https://virtualrealityfunding.herokuapp.com/auth/login', newUser)
         // .then((res) => {
@@ -108,6 +108,11 @@ const SignIn = (props) => {
         </>
     )
 }
+const mapStateToProps = (state) => {
+    return{
+        isLoading:state.isLoading
+    }
+}
 
 
-export default connect(null, { signin })(SignIn)
+export default connect(mapStateToProps, { signin })(SignIn)

@@ -16,7 +16,7 @@ const EditProjectForm = ({ project, fetchProjectDetail, editProject, isLoading }
     const onSubmit = (e) => {
         e.preventDefault()
         editProject(formValues)
-        history.push(`/project/${id}`)
+        history.push(`/dashboard`)
     }
     const handleChange = (e) => {
         setFormValues({ ...formValues, [e.target.name]: e.target.value })
