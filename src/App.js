@@ -9,6 +9,7 @@ import AddProjectForm from './Components/AddProjectForm';
 import Dashboard from './Components/Dashboard';
 import ProjectDetail from './Components/ProjectDetail';
 import EditProjectForm from './Components/EditProjectForm';
+import FooterStyles from './Components/FooterStyles';
 
 function App() {
   return (
@@ -23,12 +24,21 @@ function App() {
           <PrivateRoute path='/projectEdit/:id' component={EditProjectForm} />
         </Switch>
       </div>
-
+      
+      <FooterStyles>
       <div>
         <footer>
-          <h2>Test</h2>
+          <div className='Links'>
+          <a href='/'>Home</a>
+          <a href='/'>About Us</a>
+          <a href='/'>Contact Us</a>
+          <a href='/'>Careers</a>
+          <a href='/'>Logout</a>
+          </div>
         </footer>
       </div>
+      </FooterStyles>
+      
     </Router>
   );
 }
