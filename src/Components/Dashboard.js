@@ -1,12 +1,24 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from './Header'
 import ProjectList from './ProjectList'
 import { connect } from 'react-redux'
 import { fetchProjects } from '../actions/index'
+import axiosWithAuth from '../utils/axiosWithAuth'
 
 const Dashboard = ({ fetchProjects, projects, isLoading }) => {
+    const [ oneProjects, setOneProjects] = useState()
+
 
     useEffect(() => {
+        // axiosWithAuth()
+        // .get('/projects')
+        // .then((res) => {
+        //     setProjects(res.data)
+        //     setLoading(false)
+        // })
+        // .catch((err) => {
+        //     console.log(err)
+        // })
         fetchProjects()
     },[fetchProjects])
 
